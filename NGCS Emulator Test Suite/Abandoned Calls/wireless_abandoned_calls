@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+
+<scenario name="Wireless Abandoned Calls">
+<send retrans="500">
+
+  <![CDATA[
+INVITE urn:service:sos SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+Max-Forwards: 68
+From: <sip:+1[field1]@ims.onp.net:5060>;tag=[pid]NG911EmulatorCall[call_number]
+To: urn:service:sos
+Call-ID: [call_id]
+CSeq: [cseq] INVITE
+Contact: Anonymous <sip:[local_ip]:[local_port];transport=[transport]>;isfocus
+Expires: 300
+x-emulator-esrd: [field2]
+P-Asserted-Identity: <tel:+1[field1];cpc=emergency;oli=[field16]>
+Priority: emergency
+Geolocation-Routing: no
+Allow: UPDATE, ACK, INFO, MESSAGE, NOTIFY, REFER, CANCEL, PRACK, SUBSCRIBE, INVITE, OPTIONS, BYE
+Allow-Events: conference
+Content-Length: [len]
+User-Agent: CalgaryNG911Emulatorv1.0
+Call-Info: <urn:nena:uid:callid:[field4]:i3.ng911networkprovider.ca>;purpose=nena-CallId,<urn:nena:uid:incidentid:[field5]:i3.ng911networkprovider.ca>;purpose=nena-IncidentId
+Call-Info: <http://10.8.12.50/adr/common/comment.php?tn=[field1]>;purpose=EmergencyCallData.Comment, <http://10.8.12.50/adr/common/serviceinfo.php?tn=[field1]>;purpose=EmergencyCallData.ServiceInfo, <http://10.8.12.50/adr/common/subscriberinfo.php?tn=[field1]>;purpose=EmergencyCallData.SubscriberInfo, <http://10.8.12.50/adr/common/deviceinfo.php?tn=[field1]>;purpose=EmergencyCallData.DeviceInfo, <http://10.8.12.50/adr/common/providerinfo.php?tn=[field1]>;purpose=EmergencyCallData.ProviderInfo
+X-emulator-TargetRoute: <sip:sos@lab.calgary911.ca>
+Geolocation: <http://172.16.20.50/held/devicelocation.php?tn=[field1]>
+Geolocation: <http://10.8.12.50/held/devicelocation.php?tn=[field1]>
+Geolocation: <cid:[field6]>
+Content-Type: multipart/mixed;boundary="unique-boundary-1"
+History-Info: <sip:sos@lab.calgary911.ca?Reason=NENAI3v3%3Bcause%3D200%3Btext%3DNormal%20Route>;index=1
+Route: <sip:sos@lab.calgary911.ca>
+
+--unique-boundary-1
+Content-Type: application/sdp
+
+v=0
+o=sip:+1[field1]@ims.onp.net [field34] 1 IN IP4 [local_ip]
+s=-
+e=ims@onp.net
+c=IN IP4 [local_ip]
+t=0 0
+a=sendrecv
+m=audio 10016 RTP/AVP 102 104 110 9 108 0 8 18 105 100
+b=AS:128
+b=RS:0
+b=RR:0
+a=fmtp:109 max-red=0; br=5.9-24.4; bw=nb-wb; ch-aw-recv=2
+a=rtpmap:104 AMR-WB/16000
+a=fmtp:104 mode-set=0,1,2; mode-change-capability=2; max-red=220
+a=rtpmap:110 AMR-WB/16000
+a=fmtp:110 octet-align=1; mode-set=0,1,2; mode-change-capability=2; max-red=220
+a=rtpmap:9 G722/8000
+a=rtpmap:102 AMR/8000
+a=fmtp:102 mode-set=7; mode-change-capability=2; max-red=220
+a=rtpmap:108 AMR/8000
+a=fmtp:108 octet-align=1; mode-set=7; mode-change-capability=2; max-red=220
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:18 G729/8000
+a=rtpmap:105 telephone-event/16000
+a=fmtp:105 0-15
+a=rtpmap:100 telephone-event/8000
+a=fmtp:100 0-15
+a=ptime:20
+a=maxptime:40
+a=sendrecv
+a=des:qos mandatory local sendrecv
+a=curr:qos local none
+a=des:qos optional remote sendrecv
+a=curr:qos remote none
+
+--unique-boundary-1
+Content-Type: application/pidf+xml
+Content-ID: <<[field7]>>
+
+<?xml version="1.0" encoding="utf-8"?>
+<presence
+    xmlns="urn:ietf:params:xml:ns:pidf" entity="http://ngcs-emulator.lab.calgary911.ca/held/[field34]">
+    <tuple id="[field23]">
+        <status>
+            <geopriv
+                xmlns="urn:ietf:params:xml:ns:pidf:geopriv10">
+                <location-info>
+                    <Point
+                        xmlns="http://www.opengis.net/gml" srsName="urn:ogc:def:crs:EPSG::1718">
+                        <pos>[field24] [field25]</pos>
+                    </Point>
+                    <civicAddress
+                        xmlns="urn:ietf:params:xml:ns:pidf:geopriv10:civicAddr">
+                        <country>CA</country>
+                        <A1>[field28]</A1>
+                        <A3>[field15]</A3>
+                        <community>[field17]</community>
+                        <HNO>[field12]</HNO>
+                        <RD>[field9]</RD>
+                        <STS>[field10]</STS>
+                        <POD>[field11]</POD>
+                        <NAM>[field3]</NAM>
+                        <MP>[field13]</MP>
+                        <LMK>[field14]</LMK>
+                        <ESN xmlns="http://ng911emulator.com/pidflo">[field16]</ESN>
+                    </civicAddress>
+                </location-info>
+                <usage-rules
+                    xmlns="urn:ietf:params:xml:ns:pidf:geopriv10:basicPolicy">
+                    <retransmission-allowed>false</retransmission-allowed>
+                    <retention-expiry>[field1 file="timestamp.csv"]</retention-expiry>
+                </usage-rules>
+                <method>Cell</method>
+                <provided-by>
+                    <EmergencyCallDataValue
+                        xmlns="urn:ietf:params:xml:ns:EmergencyCallData">
+                        <EmergencyCallData.ProviderInfo
+                            xmlns="urn:ietf:params:xml:ns:EmergencyCallData:ProviderInfo">
+                            <DataProviderReference>[field23]</DataProviderReference>
+                            <DataProviderString>[field20]</DataProviderString>
+                            <ProviderID>urn:nena:companyid:[field22]</ProviderID>
+                            <ProviderIDSeries>NENA</ProviderIDSeries>
+                            <TypeOfProvider>Telecom Provider</TypeOfProvider>
+                            <ContactURI>tel:[field21]</ContactURI>
+                            <Language>en</Language>
+                        </EmergencyCallData.ProviderInfo>
+                    </EmergencyCallDataValue>
+                </provided-by>
+            </geopriv>
+        </status>
+        <timestamp>[field2 file="timestamp.csv"]</timestamp>
+    </tuple>
+</presence>
+--unique-boundary-1--
+    ]]>
+  </send>
+
+
+  <recv response="100" optional="true">
+  </recv>
+
+   <recv response="180">
+  </recv>
+
+   <pause milliseconds="5000"/>
+
+  <send retrans="500">
+<![CDATA[
+    CANCEL urn:service:sos SIP/2.0
+    [last_Via:]
+    To: <urn:service:sos>[peer_tag_param]
+    From: <sip:+1[field1]@ims.onp.net:5060>;tag=[pid]NG911EmulatorCall[call_number]
+    Call-ID: [call_id]
+    CSeq: [cseq] CANCEL
+    Contact: Anonymous <sip:[local_ip]:[local_port];transport=[transport]>;isfocus
+    Max-Forwards: 68
+    x-emulator-esrd: [field2]
+    P-Asserted-Identity: <tel:+1[field1];cpc=emergency;oli=[field3]>
+    Allow: ACK, BYE, CANCEL, INFO, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+    User-Agent: CalgaryNG911Emulatorv1.0
+    Route: <sip:sos@lab.calgary911.ca>
+    Content-length: 0
+
+
+]]>
+  </send>
+
+  <recv response="180" optional="true">
+  </recv>
+  <recv response="200" optional="true">
+  </recv>
+  <recv response="487"">
+  </recv>
+
+
+<send retrans="500">
+  <![CDATA[
+ACK sip:sos%40lab.calgary911.ca@[local_ip]:[local_port];transport=[transport] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=z9hG4bKptrmtd3008s95vpt6n00.1
+Max-Forwards: 68
+From: <sip:+1[field1]@ims.onp.net>;tag=[pid]NG911EmulatorCall[call_number]
+To: <urn:service:sos>;tag=[peer_tag_param]
+Call-ID: [call_id]
+CSeq: [cseq] ACK
+Contact: Anonymous <sip:[local_ip]:[local_port];transport=[transport]>;isfocus
+Call-Info: <urn:emergency:uid:callid:[field2]:i3.ng911networkprovider.ca>;purpose=emergency-CallId,<urn:emergency:uid:incidentid:[field3]:i3.ng911networkprovider.ca>;purpose=emergency-IncidentId
+x-emulator-esrd: [field2]
+P-Asserted-Identity: <tel:+1[field1]>
+Allow: ACK, BYE, CANCEL, INFO, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+User-Agent: CalgaryNG911Emulatorv1.0
+Content-Length: [len]
+]]>
+ </send>
+
+ <pause milliseconds="20000"/>
+
+
+<!-- definition of the response time repartition table (unit is ms)   -->
+  <ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200"/>
+
+  <!-- definition of the call length repartition table (unit is ms)     -->
+  <CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000"/>
+
+</scenario>

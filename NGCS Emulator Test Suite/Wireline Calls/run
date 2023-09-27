@@ -1,0 +1,4 @@
+rm *.log
+echo SEQUENTIAL > timestamp.csv
+echo "$(date -d 'next hour'  -u +'%Y-%m-%dT%T.%N%:z');$(date -u +'%Y-%m-%dT%T.%N%:z')" >> timestamp.csv
+sipp -t t1 -sf wireline_calls.xml -i 172.16.20.50 -aa -r 3 -rp 25000 -l 1 -inf wireline_calls_small_dataset.csv -inf timestamp.csv -m 2 -trace_err  172.16.20.58:5060

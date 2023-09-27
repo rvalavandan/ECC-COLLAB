@@ -1,0 +1,4 @@
+rm *.log
+echo SEQUENTIAL > timestamp.csv
+echo "$(date -d 'next hour'  -u +'%Y-%m-%dT%T.%N%:z');$(date -u +'%Y-%m-%dT%T.%N%:z')" >> timestamp.csv
+sipp -t t1 -sf wireless_calls.xml -i 172.16.20.50 -aa -r 3 -rp 25000 -l 1 -inf wireless_data_small_dataset.csv -inf timestamp.csv -m 5 -trace_err  172.16.20.58:5060

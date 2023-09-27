@@ -1,0 +1,286 @@
+insert into agency_uri (
+community,
+A3,
+police_uri,
+fire_uri,
+psap_uri,
+ambulance_uri,
+ambulance_display_name,
+psap_display_name,
+fire_display_name,
+police_display_name,
+psap_number,
+police_number,
+fire_number,
+ambulance_number,
+ESN,
+A1,
+country) select * from dbs_call_data_for_ali_spill.agency_uri;
+
+
+CREATE TABLE tmp_call_data (
+    data_type VARCHAR(10),
+    telephone_number VARCHAR(20),
+	esrd VARCHAR(20),
+    NAM VARCHAR(150),
+    street_address VARCHAR(150),
+    FLR VARCHAR(60),
+    ROOM VARCHAR(60),
+    PLC VARCHAR(60),
+    PCN VARCHAR(60),
+    ADDCODE VARCHAR(60),
+    SEAT VARCHAR(60),
+    RDSEC VARCHAR(60),
+    RDBR VARCHAR(60),
+    RDSUBBR VARCHAR(60),
+    PRM VARCHAR(60),
+    POM VARCHAR(60),
+    POBOX VARCHAR(60),
+    UNIT VARCHAR(60),
+    HNS VARCHAR(10),
+    HNO VARCHAR(20),
+    RD VARCHAR(60),
+    PRD VARCHAR(20),
+    POD VARCHAR(60),
+    STS VARCHAR(60),
+    LOC VARCHAR(100),
+    PC VARCHAR(10),
+    BLD VARCHAR(60),
+    A4 VARCHAR(30),
+    A5 VARCHAR(30),
+    A6 VARCHAR(30),
+    A3 VARCHAR(50),
+    A2 VARCHAR(30),
+    A1 VARCHAR(10),
+	MP VARCHAR(100),
+	LMK VARCHAR(100),
+    city VARCHAR(60),
+    country VARCHAR(10),
+    ESN VARCHAR(10),
+	latitude VARCHAR(20),
+	longitude VARCHAR(20),
+	uncertainity VARCHAR(10),
+	confidence VARCHAR(3),
+	geodetic_shape VARCHAR(10),
+    provider_string VARCHAR(30),
+    provider_id VARCHAR(10),
+    type_of_provider VARCHAR(50),
+    provider_language VARCHAR(10),
+    provider_contact_number VARCHAR(20),
+    service_environment VARCHAR(20),
+    service_type VARCHAR(20),
+    service_mobility VARCHAR(20),
+    comment VARCHAR(50),
+    community VARCHAR(60),
+    legacy_cos VARCHAR(10),
+    class_of_service VARCHAR(60),
+    provider_reference VARCHAR(100),
+    KEY (telephone_number)
+) ENGINE=InnoDB;
+
+
+
+insert into call_data (
+data_type,
+telephone_number,
+NAM,
+street_address,
+FLR,
+ROOM,
+PLC,
+PCN,
+ADDCODE,
+SEAT,
+RDSEC,
+RDBR,
+RDSUBBR,
+PRM,
+POM,
+POBOX,
+UNIT,
+HNS,
+HNO,
+RD,
+PRD,
+POD,
+STS,
+LMK,
+LOC,
+PC,
+BLD,
+A4,
+A5,
+A6,
+A3,
+A2,
+A1,
+city,
+country,
+ESN,
+provider_string,
+provider_id,
+type_of_provider,
+provider_language,
+provider_contact_number,
+service_environment,
+service_type,
+service_mobility,
+comment,
+community,
+legacy_cos,
+class_of_service,
+provider_reference) select data_type,
+telephone_number,
+NAM,
+street_address,
+FLR,
+ROOM,
+PLC,
+PCN,
+ADDCODE,
+SEAT,
+RDSEC,
+RDBR,
+RDSUBBR,
+PRM,
+POM,
+POBOX,
+UNIT,
+HNS,
+HNO,
+RD,
+PRD,
+POD,
+STS,
+LMK,
+LOC,
+PC,
+BLD,
+A4,
+A5,
+A6,
+A3,
+A2,
+A1,
+city,
+country,
+ESN,
+provider_string,
+provider_id,
+type_of_provider,
+provider_language,
+provider_contact_number,
+service_environment,
+service_type,
+service_mobility,
+comment,
+community,
+legacy_cos,
+class_of_service,
+provider_reference from dbs_call_data_for_ali_spill.table_call_data_for_ali_spill;
+
+mysql> use dbsEmulator;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql>
+mysql> show tables;
++-----------------------+
+| Tables_in_dbsEmulator |
++-----------------------+
+| agency_uri            |
+| call_data             |
++-----------------------+
+2 rows in set (0.00 sec)
+
+
+
+mysql> desc call_data;
++-------------------------+--------------+------+-----+---------+-------+
+| Field                   | Type         | Null | Key | Default | Extra |
++-------------------------+--------------+------+-----+---------+-------+
+| data_type               | varchar(10)  | YES  |     | NULL    |       |
+| telephone_number        | varchar(20)  | YES  | MUL | NULL    |       |
+| esrd                    | varchar(20)  | YES  |     | NULL    |       |
+| NAM                     | varchar(150) | YES  |     | NULL    |       |
+| street_address          | varchar(150) | YES  |     | NULL    |       |
+| FLR                     | varchar(60)  | YES  |     | NULL    |       |
+| ROOM                    | varchar(60)  | YES  |     | NULL    |       |
+| PLC                     | varchar(60)  | YES  |     | NULL    |       |
+| PCN                     | varchar(60)  | YES  |     | NULL    |       |
+| ADDCODE                 | varchar(60)  | YES  |     | NULL    |       |
+| SEAT                    | varchar(60)  | YES  |     | NULL    |       |
+| RDSEC                   | varchar(60)  | YES  |     | NULL    |       |
+| RDBR                    | varchar(60)  | YES  |     | NULL    |       |
+| RDSUBBR                 | varchar(60)  | YES  |     | NULL    |       |
+| PRM                     | varchar(60)  | YES  |     | NULL    |       |
+| POM                     | varchar(60)  | YES  |     | NULL    |       |
+| POBOX                   | varchar(60)  | YES  |     | NULL    |       |
+| UNIT                    | varchar(60)  | YES  |     | NULL    |       |
+| HNS                     | varchar(10)  | YES  |     | NULL    |       |
+| HNO                     | varchar(20)  | YES  |     | NULL    |       |
+| RD                      | varchar(60)  | YES  |     | NULL    |       |
+| PRD                     | varchar(20)  | YES  |     | NULL    |       |
+| POD                     | varchar(60)  | YES  |     | NULL    |       |
+| STS                     | varchar(60)  | YES  |     | NULL    |       |
+| LOC                     | varchar(100) | YES  |     | NULL    |       |
+| PC                      | varchar(10)  | YES  |     | NULL    |       |
+| BLD                     | varchar(60)  | YES  |     | NULL    |       |
+| A4                      | varchar(30)  | YES  |     | NULL    |       |
+| A5                      | varchar(30)  | YES  |     | NULL    |       |
+| A6                      | varchar(30)  | YES  |     | NULL    |       |
+| A3                      | varchar(50)  | YES  |     | NULL    |       |
+| A2                      | varchar(30)  | YES  |     | NULL    |       |
+| A1                      | varchar(10)  | YES  |     | NULL    |       |
+| MP                      | varchar(100) | YES  |     | NULL    |       |
+| LMK                     | varchar(100) | YES  |     | NULL    |       |
+| city                    | varchar(60)  | YES  |     | NULL    |       |
+| country                 | varchar(10)  | YES  |     | NULL    |       |
+| ESN                     | varchar(10)  | YES  |     | NULL    |       |
+| latitude                | varchar(20)  | YES  |     | NULL    |       |
+| longitude               | varchar(20)  | YES  |     | NULL    |       |
+| uncertainity            | varchar(10)  | YES  |     | NULL    |       |
+| confidence              | varchar(3)   | YES  |     | NULL    |       |
+| geodetic_shape          | varchar(10)  | YES  |     | NULL    |       |
+| provider_string         | varchar(30)  | YES  |     | NULL    |       |
+| provider_id             | varchar(10)  | YES  |     | NULL    |       |
+| type_of_provider        | varchar(50)  | YES  |     | NULL    |       |
+| provider_language       | varchar(10)  | YES  |     | NULL    |       |
+| provider_contact_number | varchar(20)  | YES  |     | NULL    |       |
+| service_environment     | varchar(20)  | YES  |     | NULL    |       |
+| service_type            | varchar(20)  | YES  |     | NULL    |       |
+| service_mobility        | varchar(20)  | YES  |     | NULL    |       |
+| comment                 | varchar(50)  | YES  |     | NULL    |       |
+| community               | varchar(60)  | YES  |     | NULL    |       |
+| legacy_cos              | varchar(10)  | YES  |     | NULL    |       |
+| class_of_service        | varchar(60)  | YES  |     | NULL    |       |
+| provider_reference      | varchar(100) | YES  |     | NULL    |       |
++-------------------------+--------------+------+-----+---------+-------+
+56 rows in set (0.00 sec)
+
+mysql> desc agency_uri;
++------------------------+--------------+------+-----+---------+-------+
+| Field                  | Type         | Null | Key | Default | Extra |
++------------------------+--------------+------+-----+---------+-------+
+| community              | varchar(60)  | YES  |     | NULL    |       |
+| A3                     | varchar(60)  | YES  | MUL | NULL    |       |
+| police_uri             | varchar(100) | YES  |     | NULL    |       |
+| fire_uri               | varchar(100) | YES  |     | NULL    |       |
+| psap_uri               | varchar(100) | YES  |     | NULL    |       |
+| ambulance_uri          | varchar(100) | YES  |     | NULL    |       |
+| ambulance_display_name | varchar(100) | YES  |     | NULL    |       |
+| psap_display_name      | varchar(100) | YES  |     | NULL    |       |
+| fire_display_name      | varchar(100) | YES  |     | NULL    |       |
+| police_display_name    | varchar(100) | YES  |     | NULL    |       |
+| psap_number            | varchar(20)  | YES  |     | NULL    |       |
+| police_number          | varchar(20)  | YES  |     | NULL    |       |
+| fire_number            | varchar(20)  | YES  |     | NULL    |       |
+| ambulance_number       | varchar(20)  | YES  |     | NULL    |       |
+| ESN                    | varchar(10)  | NO   |     | NULL    |       |
+| A1                     | varchar(10)  | YES  |     | NULL    |       |
+| country                | varchar(5)   | YES  |     | NULL    |       |
++------------------------+--------------+------+-----+---------+-------+
+17 rows in set (0.00 sec)
+
+mysql>

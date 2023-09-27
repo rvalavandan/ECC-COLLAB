@@ -1,0 +1,153 @@
+
+
+
+import random
+
+adjectives = [
+    "Golden", "Canada", "Alberta", "Calgary", "Silent", "Luminous", "Azure", "Starry",
+    "Radiant", "Mystic", "Ethereal", "Verdant", "Polar",
+    "Dynamic", "Urban", "Bright", "Silent", "Noble", "Golden",
+    "Crystal", "Echo", "Green", "Solar", "Ocean", "Dream", "Redwood",
+    "Mystic", "Bright", "Starlight", "Silent", "Vintage",
+    "Platinum", "Diamond", "Cosmic", "Solar", "Azure", "Neon",
+    "Winter", "Silver", "Radiant", "White", "Twilight", "Zenith",
+    "Electric", "Polar", "Stellar", "Green", "Velvet", "Blue", "Golden",
+    "Royal", "Electric", "Aurora", "Silent", "Northern", "Solar", "Diamond",
+    "Serene", "Midnight", "Rising", "Azure", "Crimson", "Pristine",
+    "Skyward", "Crystal", "Aurora", "Bright", "Golden", "PureWater",
+    "Radiant", "Evergreen", "Mystic", "Ocean", "Moonlight",
+    "Whispering", "Dreamcatcher", "Serene", "Stellar", "Pristine", "Velvet",
+    "Silver", "Luminous", "First", "Azure", "Northern", "Silent", "Sunlit",
+    "Diamond", "Twilight", "Zenith", "Amber", "Celestial", "Bluebird",
+    "Solar", "Green", "Forest", "Harmony", "Platinum", "Coral", "Solar",
+    "Redwood", "Crystal", "Sundance", "Autumn",
+    "Morning", "Ruby", "Polar", "Velvet", "Echo", "Lumina", "Whisper", "Summit",
+    "Lunar", "Terra", "Solar", "Bluebell", "Radiant", "Aqua", "Ember", "Oceanic",
+    "Pinnacle", "Nimbus", "Golden", "Phoenix", "Silent", "Mystic", "Lustrous",
+    "Polaris", "Dreamy", "Starshine", "Vibrant", "Harmony", "Liquid", "Solar", "Celestial",
+	"Luminous", "Morningstar", "Sunstone", "Tranquil", "Amber", "Timeless", "Lunar", "Nebula",
+	"Azure", "Silver", "Breezy", "Aurora", "Golden", "Serenity", "Whispering", "Lustrous",
+	"Silver", "Radiant", "Celestial", "Emerald", "Solar", "Vibrant", "Misty", "Green",
+	"Sapphire", "Pristine", "Glacial", "Polished", "imbus", "Terra", "Verdant", "Celestial",
+	"Ocean", "Dreamweaver", "Glinting", "Polar", "Luminous", "Velvet", "Starlit", "Majestic",
+	"Crystal", "Solar", "Enchanted", "Forest", "Azure", "Radiant", "Golden", "Dewdrop",
+	"Silent", "Celestial", "Aqua", "Phoenix", "Verdant", "Luna", "Terra", "Mystic",
+	"Emerald", "Solar", "Neptune", "Twilight", "Bluebell", "Whispering", "Starry",
+	"Pinnacle", "Lustrous", "Dawn", "Silken", "Ember", "Ruby",
+    "Crystal", "Windward", "Ocean", "Glinting", "Alpine", "Nova", "Silent", "Golden",
+    "Luminous", "Terra", "Aurora",
+    "Solstice", "Ocean", "Crimson", "Mystic", "Polaris", "Stellar", "Lunar",
+    "Diamond", "Silvery", "Coral", "Neptune", "Celestial", "Aurora", "Majestic",
+    "Sunlit", "Ethereal", "Liquid", "Mystic", "Sunlit", "Polished", "Solar",
+    "Crimson", "Polar", "Terra", "Sapphire", "Verdant", "Enchanted", "Golden",
+    "Dawn", "Nebula", "Radiant", "Ember", "Azure", "Windward", "Dreamy",
+    "Luminous", "Starlit", "Majestic", "Silken", "Crystal", "Twilight",
+    "Luna", "Silvery", "Polaris", "Verdant", "Enchanted", "Forest", "Glacial"
+]
+
+nouns = [
+    "Mountain", "Ocean", "Sky", "Forest", "Meadow",
+    "Nebula", "Horizon", "Dawn", "Valley", "Lagoon",
+    "Stone", "Wave", "Horizon", "Peak", "Stream", "Leaf",
+    "Mountain", "Moon", "Valley", "Flare", "Breeze", "Valley",
+    "Pixel", "River", "Echo", "Innovations", "Sun", "Sky",
+    "Tree", "Sea", "Night", "Dream", "Wave", "Moon", "Sun",
+    "Cloud", "Ocean", "Pine", "Sand", "Peak", "Rain", "Star",
+    "Sky", "Light", "Leaf", "Ridge", "Sun", "Stream", "Night",
+    "Field", "Forest", "Wind", "Tide", "Field", "Sky", "Ocean",
+    "Sun", "Dawn", "Tide", "Peak", "Innovations", "Clear",
+    "Designs", "Future", "Horizon", "Solutions", "Sun", "Eco",
+    "Mountain", "Breeze", "Media", "Pines", "Studios", "Valley",
+    "Heights", "Peak", "Vine", "Stream", "Tide", "Light", "Ocean",
+    "Star", "Night", "Field", "Dew", "Grove", "Zen", "Waves",
+    "Heights", "Creations", "Radiance", "Meadow", "Shadow",
+    "Haven", "Peak", "Cove", "Serenity", "Retreat", "Cove",
+    "Solutions", "Aura", "Mist", "Ray", "Prism", "Vision",
+    "Eden", "Lakes", "Woods", "Seeker", "Lagoon", "Nova",
+    "Sails", "Bliss", "Ridge", "Essence", "Echo", "Origins",
+    "Point", "Nook", "Gale", "Flight", "Spring", "Meadow", "Lagoon",
+    "Point", "Delta", "Studios", "Vista", "Hillside", "Light",
+    "Spectrum", "Stream", "Loom", "Media", "Studios",
+    "Trails", "Arch", "Terra", "Landscape", "Nook",
+    "Abyss", "Skyline", "Beach", "Avenues", "Grove",
+    "Summit", "Willow", "Light", "Spruce", "River",
+    "Crest", "Echo", "Silhouette", "Valley", "Meadow",
+    "Glade", "Sky", "Pinnacle", "Grove", "Peak", "Nectar",
+    "Twilight", "Viewpoint", "Cascade", "Oracle", "Designs",
+    "Grove", "Pinnacle", "Loft", "Vista", "Sands", "Meadow",
+    "Cavern", "Spire", "Elm", "Fountain", "Ascent", "Rhapsody",
+    "Grains", "Digital", "Summit", "Chateau", "Archipelago", "Plume",
+    "Voyage", "Lighthouse", "Trance", "Meridian", "Enclave", "Sonata",
+    "Niche", "Tides", "Bliss", "Waters", "Safari", "Prism", "Labyrinth",
+    "Delight", "Spire", "Essence", "Radiance", "Canopy", "Wonders",
+    "Oasis", "Galaxy", "Apex", "Nirvana", "Symphony", "Gale", "Ledge",
+    "Tapestry", "Alcove", "Silhouette", "Odyssey", "Crest",
+    "Mirage", "Panorama", "Spectrum", "Luminary", "Drift",
+    "Springs", "Crown", "Nexus", "Cypher", "Abyss", "Mirage",
+    "Sanctuary", "Essence", "Luminance", "Muse", "Sails", "Pines",
+    "Seraph", "Canopy", "Prism", "Twilight", "Sails", "Valley",
+    "Estuary", "Grotto", "Delight", "Nest", "Reverie", "Enigma",
+    "Aura", "Wavelength", "Drift", "Lagoon", "Serenity", "Moonbeam",
+    "Spire", "Cascade", "Trance", "Luminary", "Springs", "Panorama",
+    "Vista", "Elm", "Fountain", "Glow"
+
+]
+
+business_types = [
+    "Ventures", "Technologies", "Designs", "Enterprises", "Innovations",
+    "Creations", "Solutions", "Labs", "Productions", "Graphics",
+    "Solutions", "Designs", "Enterprises", "Technologies", "Innovations",
+    "Labs", "Digital", "Creations", "Motors", "Systems", "Marketing",
+    "Productions", "Studios", "Software", "Ventures", "Graphics",
+    "Analytics", "Consulting", "Ventures", "Studios", "Labs", "Tech",
+    "Creations", "Productions", "Enterprises", "Labs", "Solutions",
+    "Marketing", "Services", "Technologies", "Consulting", "Designs",
+    "Analytics", "Graphics", "Innovations", "Systems", "Creations",
+    "Ventures", "Productions", "Technologies", "Labs", "Graphics",
+    "Tech", "Designs", "Innovations", "Ventures", "Marketing",
+    "Productions", "Innovations", "Consulting", "Enterprises",
+    "Labs", "Technologies", "Ventures", "Digital", "Creations",
+    "Software", "Productions", "Marketing", "Ventures",
+    "Graphics", "Analytics", "Technologies", "Labs", "Consulting",
+    "Designs", "Studios", "Innovations", "Creations", "Technologies",
+    "Ventures", "Media", "Marketing", "Software", "Graphics",
+    "Productions", "Ventures", "Media", "Innovations", "Studios", "Digital",
+    "Consulting", "Analytics", "Marketing", "Ventures", "Productions",
+    "Designs", "Enterprises", "Labs", "Media", "Software", "Labs",
+    "Technologies", "Solutions", "Studios", "Marketing", "Analytics",
+    "Enterprises", "Innovations", "Productions", "Digital", "Graphics",
+    "Ventures", "Studios", "Media", "Labs", "Productions", "Designs",
+    "Ventures", "Software", "Labs", "Studios", "Consulting", "Innovations",
+    "Technologies", "Analytics", "Tech", "Labs", "Ventures", "Analytics",
+    "Software", "Media", "Ventures", "Graphics", "Solutions", "Studios", "Labs",
+    "Solutions", "Ventures", "Creations", "Enterprises", "Software", "Ventures",
+    "Media", "Graphics", "Studios", "Productions", "Graphics", "Productions",
+    "Ventures", "Tech", "Studios", "Creations", "Enterprises", "Graphics",
+    "Productions", "Labs", "Ventures", "Studios", "Marketing", "Consulting",
+    "Software", "Enterprises", "Studios", "Analytics", "Ventures", "Graphics",
+	"Software", "Creations", "Analytics", "Productions", "Ventures", "Labs",
+	"Technologies", "Media", "Enterprises", "Studios", "Innovations", "Tech",
+	"Ventures", "Works", "Software", "Productions", "Labs", "Designs",
+	"Solutions", "Enterprises", "Studios", "Creations", "Ventures",
+	"Innovations", "Graphics", "Analytics", "Ventures", "Software",
+	"Graphics", "Labs", "Tech", "Analytics", "Studios", "Innovations",
+	"Creations", "Media", "Productions", "Solutions", "Labs", "Digital",
+	"Studios", "Creations", "Ventures", "Consulting", "Analytics",
+	"Marketing", "Software", "Enterprises", "Labs", "Media", "Solutions", "Productions",
+	"Software", "Creations", "Productions", "Tech", "Software", "Ventures",
+	"Enterprises", "Graphics", "Digital", "Innovations", "Studios", "Enterprises",
+	"Analytics", "Works", "Designs", "Labs", "Studios", "Media", "Solutions", "Creations",
+	"Tech", "Labs", "Studios", "Productions", "Ventures", "Enterprises", "Studios", "Graphics"
+]
+
+def generate_business_name():
+    return f"{random.choice(adjectives)} {random.choice(nouns)} {random.choice(business_types)}"
+
+names = set()
+desired_count = 998
+
+while len(names) < desired_count:
+    names.add(generate_business_name())
+
+for name in names:
+    print(name.upper())
